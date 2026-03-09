@@ -8,6 +8,26 @@ from escalas import (
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import sys
+import os
+from tkinter import Tk, PhotoImage
+
+def resource_path(relative_path):
+    base = getattr(sys, '_MEIPASS', os.path.abspath('.'))
+    return os.path.join(base, relative_path)
+
+# criação da janela
+root = Tk()
+
+# definir ícone com fallback seguro
+try:
+    root.iconbitmap(resource_path('asset/APP_logo.ico'))
+except Exception:
+    try:
+        img = PhotoImage(file=resource_path('asset/logo.png'))
+        root.iconphoto(False, img)
+    except Exception:
+        pass
 
 
 
@@ -77,10 +97,3 @@ if __name__ == "__main__":
     main()
 
 
-# criar_escala_automatico(
-    #     mes=5,
-    #     ano=2026,
-    #     folgas="1:(1,8,15,21),2:(2,9,16,22)",
-    #     estado="SP"  # opcional
-    # )
-    # print("escala teste criada!")
